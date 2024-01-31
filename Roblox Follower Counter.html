@@ -1,0 +1,23 @@
+<html>
+<head
+	<title>Roblox Follower Count</title>
+	<script>
+		function getFollowerCount() {
+			const playerId = document.getElementById('playerId').value;
+			fetch(`https://friends.roproxy.com/v1/users/${playerId}/followers/count`)
+				.then(response => response.json())
+				.then(data => {
+					document.getElementById('followerCount').innerText = `Followers: ${data.count}`;
+				})
+				.catch(error => {
+					console.error('Error:', error);
+				});
+		}
+	</script>
+</head>
+<body>
+	<input type="text" id="playerId" placeholder="Enter player ID">
+	<button onclick="getFollowerCount()">Get Follower Count</button>
+	<h1 id="followerCount"></h1>
+</body>
+</html>
